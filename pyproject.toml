@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "datatoys"
-version = "0.1.0"
+version = "0.1.1"
 description = "Let's play with data! We prepared toy data for data newbies."
 authors = ["Dongook Son <60206749+donny-son@users.noreply.github.com>"]
 license = "MIT"
