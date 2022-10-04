@@ -13,7 +13,7 @@ pip install datatoys
 
 ## Usage
 
-Checkout the [example notebook](assets/notebook-example.html) for a quick start.
+Checkout the [example notebook](assets/notebook-example.png) for a quick start.
 
 ## A List of datasets
 
