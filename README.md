@@ -2,6 +2,8 @@
 
 ## Overview
 
+`datatoys-python`는 통계, 데이터분석 입문하시는 분들이 쉽게 사용할 수 있는 공공데이터 패키지입니다. [`statgarten/datatoys`](https://github.com/statgarten/datatoys) R 패키지의 데이터를 파이썬에 `pandas.DataFrame` 형식으로 쉽게 불러올 수 있습니다.
+
 `datatoys-python` is a Python library for loading the curated list of datasets from the [`statgarten/datatoys`](https://github.com/statgarten/datatoys) R library.
 
 ## Installation
