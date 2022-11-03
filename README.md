@@ -6,6 +6,8 @@
 
 ## Installation
 
+![installation](https://github.com/statgarten/datatoys-python/blob/main/assets/install.gif)
+
 ```bash
 # Install from pip
 pip install datatoys
@@ -13,7 +15,9 @@ pip install datatoys
 
 ## Usage
 
-Checkout the [example notebook](assets/notebook-example.png) for a quick start.
+![usage](https://github.com/statgarten/datatoys-python/blob/main/assets/demo.gif)
+
+Checkout the [example notebook image](assets/notebook-example.png) for a quick start.
 
 ## A List of datasets
 
