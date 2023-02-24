@@ -6,7 +6,7 @@ authors = ["Dongook Son <60206749+donny-son@users.noreply.github.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = ">3.8,<3.11"
+python = ">3.8,<3.12"
 lxml = "^4.9.1"
 pyreadr = "^0.4.7"
 pandas = "^1.5.0"
@@ -14,10 +14,8 @@ numpy = "^1.23.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.3"
-notebook = "^6.4.12"
 black = "^22.8.0"
 debugpy = "^1.6.2"
-jedi-language-server = "^0.37.0"
 pre-commit = "^2.20.0"
 pytest-html = "^3.1.1"
 tqdm = "^4.64.1"
