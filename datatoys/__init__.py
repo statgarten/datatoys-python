@@ -1,7 +1,10 @@
+import io
 import os
 
 import pandas as pd
 import pyreadr
+import requests
+from bs4 import BeautifulSoup
 
 
 class Datatoy:
@@ -28,7 +31,13 @@ class Datatoy:
 
     def get_manifest(self) -> pd.DataFrame:
         url = self.DATATOYS_URL + self.README_POSTFIX
-        response = pd.read_html(url)
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content, "html.parser")
+        all_tables = soup.find_all("table")
+        manifest_table = all_tables[0]
+        assert len(all_tables) == 1, "There are multiple tables!"
+        manifest_table_string = io.StringIO(manifest_table.prettify())
+        response = pd.read_html(manifest_table_string)
         assert len(response) == 1 and isinstance(response[0], pd.DataFrame)
         return response.pop()
 
