@@ -18,7 +18,9 @@ def datatoy_instance():
 # This fixture generates a static list of sample dataset names
 @pytest.fixture(scope="module")
 def sample_dataset_name(datatoy_instance):
-    return sample(datatoy_instance.get_manifest_dataset_names(), 1)[0]
+    _sample_dataset_name = sample(datatoy_instance.get_manifest_dataset_names(), 1)[0]
+    print("\nSelected dataset is: ", _sample_dataset_name)
+    return _sample_dataset_name
 
 
 def test_create_data_directory():
@@ -44,4 +46,6 @@ def test_install(datatoy_instance, sample_dataset_name):
 
 
 def test_load(datatoy_instance, sample_dataset_name):
-    assert isinstance(datatoy_instance.load(sample_dataset_name), pd.DataFrame)
+    df = datatoy_instance.load(sample_dataset_name)
+    print(df)
+    assert isinstance(df, pd.DataFrame)
