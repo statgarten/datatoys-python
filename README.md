@@ -26,3 +26,9 @@ Checkout the [example notebook image](assets/notebook-example.png) for a quick s
 ## A List of datasets
 
 [statgarten/datatoys dataset list](https://github.com/statgarten/datatoys#a-list-of-datasets)
+
+## Test
+
+```python
+pytest -s
+```
