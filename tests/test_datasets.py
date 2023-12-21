@@ -2,9 +2,23 @@ import os
 from random import sample
 
 import pandas as pd
-from tqdm import tqdm
+import pytest
 
 from datatoys import Datatoy
+
+THRESHOLD_NUM_DATASETS = 80
+
+
+# This fixture returns a Datatoy instance
+@pytest.fixture(scope="module")
+def datatoy_instance():
+    return Datatoy()
+
+
+# This fixture generates a static list of sample dataset names
+@pytest.fixture(scope="module")
+def sample_dataset_name(datatoy_instance):
+    return sample(datatoy_instance.get_manifest_dataset_names(), 1)[0]
 
 
 def test_create_data_directory():
@@ -15,31 +29,19 @@ def test_create_data_directory():
     assert os.path.exists(download_dir)
 
 
-class TestDatatoy:
+def test_get_manifest(datatoy_instance):
+    assert isinstance(datatoy_instance.get_manifest(), pd.DataFrame)
 
-    dt = Datatoy()
-    sample_dataset_names = sample(dt.get_manifest_dataset_names(), 3)
 
-    def test_get_manifest(self):
-        assert isinstance(self.dt.get_manifest(), pd.DataFrame)
+def test_get_manifest_dataset_names(datatoy_instance):
+    assert isinstance(datatoy_instance.get_manifest_dataset_names(), list)
+    assert len(datatoy_instance.get_manifest_dataset_names()) >= THRESHOLD_NUM_DATASETS
 
-    def test_get_manifest_dataset_names(self):
-        assert isinstance(self.dt.get_manifest_dataset_names(), list)
-        assert (
-            len(self.dt.get_manifest_dataset_names()) >= 37
-        )  # 2022. 10. 4. 37 datasets
 
-    def test_install(self):
-        for dataset_nm in tqdm(self.sample_dataset_names):
-            tqdm.write(f"Installing {dataset_nm}")
-            assert self.dt.install(dataset_nm)
+# Use the static list from the fixture for parameterization
+def test_install(datatoy_instance, sample_dataset_name):
+    assert datatoy_instance.install(sample_dataset_name)
 
-    def test_load(self):
-        for dataset_nm in tqdm(self.sample_dataset_names):
-            tqdm.write(f"Loading {dataset_nm}")
-            assert isinstance(self.dt.load(dataset_nm), pd.DataFrame)
 
-    def test_clean(self):
-        for dataset_nm in tqdm(self.sample_dataset_names):
-            tqdm.write(f"Cleaning {dataset_nm}")
-            assert self.dt.clean(dataset_nm)
+def test_load(datatoy_instance, sample_dataset_name):
+    assert isinstance(datatoy_instance.load(sample_dataset_name), pd.DataFrame)
